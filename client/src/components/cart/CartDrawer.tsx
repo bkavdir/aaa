@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "wouter";
-import { ShoppingBag, X } from "lucide-react";
+import { ShoppingBag, X, Headphones, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import CartItem from "./CartItem";
@@ -21,14 +21,14 @@ const CartDrawer: React.FC = () => {
 
   return (
     <Sheet open={isCartOpen} onOpenChange={toggleCart}>
-      <SheetContent className="w-full sm:max-w-md">
+      <SheetContent className="w-full sm:max-w-md bg-black border-l border-[#e60073]/40">
         <SheetHeader className="flex flex-row items-center justify-between">
-          <SheetTitle className="flex items-center">
+          <SheetTitle className="flex items-center gothic-text text-white rave-glow">
             <ShoppingBag className="mr-2 h-5 w-5" />
-            Your Cart
+            YOUR BASSLINE
           </SheetTitle>
           <SheetClose asChild>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="text-white hover:bg-[#e60073]/20">
               <X className="h-4 w-4" />
             </Button>
           </SheetClose>
@@ -36,13 +36,15 @@ const CartDrawer: React.FC = () => {
 
         {isEmpty ? (
           <div className="flex flex-col items-center justify-center h-[70vh]">
-            <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium mb-2">Your cart is empty</h3>
-            <p className="text-muted-foreground text-center mb-6">
-              Looks like you haven't added any items to your cart yet.
+            <div className="bg-[#e60073]/10 p-8 rounded-full mb-6 rave-border">
+              <ShoppingBag className="h-16 w-16 text-white mb-4" />
+            </div>
+            <h3 className="text-xl font-medium mb-2 gothic-text text-white">Your cart is empty</h3>
+            <p className="text-white/70 text-center mb-6">
+              Drop some hard techno gear in your cart for the perfect rave outfit.
             </p>
-            <Button asChild>
-              <Link href="/shop">Start Shopping</Link>
+            <Button asChild className="bg-[#e60073] hover:bg-[#e60073]/80 rave-border">
+              <Link href="/shop">START SHOPPING</Link>
             </Button>
           </div>
         ) : (
@@ -64,35 +66,36 @@ const CartDrawer: React.FC = () => {
             </div>
 
             <div className="mt-auto pt-4">
-              <Separator className="mb-4" />
+              <Separator className="mb-4 bg-[#e60073]/30" />
               
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Subtotal</span>
-                  <span>€{cartTotal.toFixed(2)}</span>
+                  <span className="text-white/70">Subtotal</span>
+                  <span className="text-white">€{cartTotal.toFixed(2)}</span>
                 </div>
                 
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Shipping</span>
-                  <span>Calculated at checkout</span>
+                  <span className="text-white/70">Shipping</span>
+                  <span className="text-white">Calculated at checkout</span>
                 </div>
                 
-                <Separator />
+                <Separator className="bg-[#e60073]/30" />
                 
                 <div className="flex justify-between font-medium">
-                  <span>Total</span>
-                  <span>€{cartTotal.toFixed(2)}</span>
+                  <span className="text-white gothic-text">TOTAL</span>
+                  <span className="text-white gothic-text">€{cartTotal.toFixed(2)}</span>
                 </div>
               </div>
               
               <SheetFooter className="mt-6">
-                <Button className="w-full bg-[hsl(184,100%,50%)] text-black hover:bg-[hsl(184,100%,45%)]">
-                  Checkout
+                <Button className="w-full bg-[#e60073] hover:bg-[#e60073]/80 rave-border gothic-text tracking-wider">
+                  <Zap className="mr-2 h-4 w-4" />
+                  CHECKOUT
                 </Button>
               </SheetFooter>
               
-              <p className="text-center text-xs text-muted-foreground mt-4">
-                Shipping and taxes calculated at checkout
+              <p className="text-center text-xs text-white/50 mt-4">
+                Free shipping on orders over €100
               </p>
             </div>
           </div>

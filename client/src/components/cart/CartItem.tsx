@@ -1,5 +1,5 @@
 import React from "react";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { CartItem as CartItemType } from "@/context/CartContext";
@@ -21,21 +21,21 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   };
 
   return (
-    <div className="flex gap-4 py-4 border-b border-border/40">
+    <div className="flex gap-4 py-4 border-b border-[#e60073]/30">
       {/* Product Image */}
-      <div className="w-20 h-20 bg-[#232323] rounded-md overflow-hidden flex-shrink-0">
+      <div className="w-20 h-20 bg-black rounded-md overflow-hidden flex-shrink-0 border border-[#e60073]/30">
         <img
           src={item.product.images[0]}
           alt={item.product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
         />
       </div>
 
       {/* Product Details */}
       <div className="flex-1 min-w-0">
-        <h4 className="font-medium text-sm line-clamp-1">{item.product.name}</h4>
+        <h4 className="font-medium text-sm line-clamp-1 text-white gothic-text">{item.product.name}</h4>
         
-        <div className="flex flex-wrap gap-x-2 text-xs text-muted-foreground mt-1">
+        <div className="flex flex-wrap gap-x-2 text-xs text-white/60 mt-1">
           <span>Color: {item.variant.color}</span>
           <span>Size: {item.variant.size}</span>
         </div>
@@ -45,19 +45,19 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             <Button 
               variant="outline" 
               size="icon" 
-              className="h-6 w-6" 
+              className="h-6 w-6 border-[#e60073]/40 text-white hover:bg-[#e60073]/20 hover:border-[#e60073]" 
               onClick={() => handleQuantityChange(-1)}
               disabled={item.quantity <= 1}
             >
               <Minus className="h-3 w-3" />
             </Button>
             
-            <span className="w-6 text-center text-sm">{item.quantity}</span>
+            <span className="w-6 text-center text-sm text-white">{item.quantity}</span>
             
             <Button 
               variant="outline" 
               size="icon" 
-              className="h-6 w-6" 
+              className="h-6 w-6 border-[#e60073]/40 text-white hover:bg-[#e60073]/20 hover:border-[#e60073]" 
               onClick={() => handleQuantityChange(1)}
             >
               <Plus className="h-3 w-3" />
@@ -65,13 +65,13 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           </div>
           
           <div className="flex items-center">
-            <span className="font-medium mr-2">
+            <span className="font-medium mr-2 text-white">
               €{((item.product.salePrice || item.product.price) * item.quantity).toFixed(2)}
             </span>
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-6 w-6 text-muted-foreground hover:text-destructive" 
+              className="h-6 w-6 text-white/60 hover:text-[#e60073] hover:bg-[#e60073]/10" 
               onClick={handleRemove}
             >
               <Trash2 className="h-3 w-3" />
