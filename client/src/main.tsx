@@ -1,0 +1,16 @@
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
+// CartProvider is now imported and used directly in App.tsx
+
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  createRoot(rootElement).render(
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  );
+}
