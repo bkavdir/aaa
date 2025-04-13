@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { Mail, Zap, Music, Headphones } from "lucide-react";
 
 const formSchema = insertNewsletterSubscriptionSchema.extend({
   email: z.string().email({ message: "Please enter a valid email address" })
@@ -42,7 +43,7 @@ const Newsletter = () => {
       setIsSubmitted(true);
       toast({
         title: "Subscription successful!",
-        description: "You're now on our newsletter list.",
+        description: "You're now on our underground list.",
         variant: "default",
       });
     },
@@ -60,9 +61,34 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-16 bg-[#121212] relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1')] bg-cover bg-center"></div>
+    <section className="py-16 bg-black border-y border-[#e60073]/30 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div 
+          className="absolute top-[20%] left-[15%] w-48 h-48 rounded-full bg-[#e60073]/10 blur-3xl"
+          animate={{ 
+            scale: [1, 1.4, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ 
+            duration: 7,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-[10%] right-[25%] w-40 h-40 rounded-full bg-[#00F5FF]/5 blur-3xl"
+          animate={{ 
+            scale: [1, 1.6, 1],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: 1
+          }}
+        />
       </div>
       
       <div className="container mx-auto px-4 relative">
@@ -73,20 +99,32 @@ const Newsletter = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold uppercase mb-4 text-[hsl(184,100%,50%)]">
-            Join Our Community
+          <div className="mb-4 flex justify-center">
+            <div className="flex items-center justify-center w-16 h-16 rounded-full border border-[#e60073] mb-4">
+              <Headphones className="w-8 h-8 text-[#e60073]" />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold uppercase mb-4 text-white gothic-text tracking-wider flex items-center justify-center gap-3">
+            <span className="rave-glow">JOIN OUR</span> <span className="text-[#e60073]">BASSLINE</span>
           </h2>
-          <p className="text-muted-foreground mb-8">
-            Sign up to receive updates on new arrivals, special offers and our promotions.
+          
+          <p className="text-white/70 mb-8">
+            Be the first to hear about hard techno drops, underground events and exclusive promotions.
           </p>
           
           {isSubmitted ? (
-            <div className="bg-[#232323] p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-2 text-[hsl(60,100%,50%)]">Thank You!</h3>
-              <p className="text-muted-foreground">
-                You've been added to our mailing list and will hear from us soon.
+            <motion.div 
+              className="bg-black p-6 rounded-lg border border-[#e60073] rave-glow"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <h3 className="text-xl font-bold mb-2 text-white gothic-text">THANK YOU!</h3>
+              <p className="text-white/70">
+                You're now part of our underground community. The beat will drop soon.
               </p>
-            </div>
+            </motion.div>
           ) : (
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
@@ -96,30 +134,34 @@ const Newsletter = () => {
                   render={({ field }) => (
                     <FormItem className="flex-grow">
                       <FormControl>
-                        <Input 
-                          placeholder="Your email address" 
-                          type="email"
-                          className="px-4 py-3 bg-[#232323] border border-border focus:border-[hsl(184,100%,50%)]"
-                          {...field} 
-                        />
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#e60073]" />
+                          <Input 
+                            placeholder="Your email address" 
+                            type="email"
+                            className="pl-10 pr-4 py-3 bg-black border border-[#e60073]/50 focus:border-[#e60073] text-white"
+                            {...field} 
+                          />
+                        </div>
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-[#e60073]" />
                     </FormItem>
                   )}
                 />
                 <Button 
                   type="submit" 
                   disabled={isPending}
-                  className="bg-[hsl(184,100%,50%)] text-black hover:bg-[hsl(184,100%,45%)] hover:shadow-[0_0_10px_rgba(0,245,255,0.7)] py-3 px-8 rounded-md uppercase tracking-wider transition-all"
+                  className="bg-[#e60073] hover:bg-[#e60073]/80 text-white py-3 px-8 rounded-md gothic-text uppercase tracking-wider transition-all flex items-center gap-2"
                 >
-                  {isPending ? "Subscribing..." : "Subscribe"}
+                  <Zap className="h-4 w-4" />
+                  {isPending ? "SENDING..." : "JOIN NOW"}
                 </Button>
               </form>
             </Form>
           )}
           
-          <p className="text-xs text-muted-foreground mt-4">
-            By signing up, you agree to receive marketing emails from Serotonin Styles. You can unsubscribe at any time.
+          <p className="text-xs text-white/50 mt-6 max-w-md mx-auto">
+            By joining, you'll receive exclusive updates on new drops and underground events from Serotonin Styles. No spam, just pure techno vibes.
           </p>
         </motion.div>
       </div>
