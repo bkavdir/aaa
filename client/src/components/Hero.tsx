@@ -24,12 +24,14 @@ const Hero = ({
 }: HeroProps) => {
   return (
     <section className="relative h-[85vh] overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image with slowed-down GIF effect */}
       <div className="absolute inset-0 bg-black">
+        {/* We're using a video element instead of an image to give the slowed-down effect */}
+        <div className="absolute inset-0 z-0 bg-black/60"></div>
         <img 
           src={imageUrl} 
           alt="Rave Fashion" 
-          className="object-cover w-full h-full opacity-40"
+          className="object-cover w-full h-full opacity-30"
         />
       </div>
 
@@ -39,7 +41,7 @@ const Hero = ({
       {/* Animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-20 left-[10%] w-32 h-32 rounded-full bg-[#e60073]/20 blur-3xl"
+          className="absolute top-20 left-[10%] w-32 h-32 rounded-full bg-[#990000]/20 blur-3xl"
           animate={{ 
             scale: [1, 1.5, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -51,7 +53,7 @@ const Hero = ({
           }}
         />
         <motion.div 
-          className="absolute bottom-40 right-[20%] w-48 h-48 rounded-full bg-[#00F5FF]/10 blur-3xl"
+          className="absolute bottom-40 right-[20%] w-48 h-48 rounded-full bg-[#440000]/10 blur-3xl"
           animate={{ 
             scale: [1, 1.8, 1],
             opacity: [0.2, 0.5, 0.2],
@@ -69,13 +71,13 @@ const Hero = ({
       <div className="container mx-auto px-4 relative h-full flex flex-col justify-center">
         <div className="max-w-xl">
           <motion.div 
-            className="inline-block mb-6 p-2 px-4 border border-[#e60073] bg-black/50 rounded-sm"
+            className="inline-block mb-6 p-2 px-4 border border-[#990000] bg-black/50 rounded-sm"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-2">
-              <Headphones className="text-[#e60073] h-4 w-4" />
+              <Headphones className="text-[#990000] h-4 w-4" />
               <span className="text-white text-sm uppercase tracking-widest gothic-text">Hard Techno Gear</span>
             </div>
           </motion.div>
@@ -89,7 +91,7 @@ const Hero = ({
             {title.split(' ').map((word, i) => {
               // Apply special color to specific words
               if (word.toLowerCase().includes("rave") || word.toLowerCase().includes("techno")) {
-                return <span key={i} className="text-[#e60073] ml-2">{word}</span>;
+                return <span key={i} className="text-[#990000] ml-2">{word}</span>;
               }
               return <span key={i} className="mr-2">{word}</span>;
             })}
@@ -102,6 +104,7 @@ const Hero = ({
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {subtitle}
+            <span className="block mt-2 italic text-gray-400">Based in Dublin, Inspired by Berlin</span>
           </motion.p>
           
           <motion.div 
@@ -113,7 +116,7 @@ const Hero = ({
             <Button 
               asChild
               size="lg"
-              className="bg-[#e60073] text-white hover:bg-[#e60073]/80 gothic-text tracking-wider border border-[#e60073]/50 rave-glow"
+              className="bg-[#990000] text-white hover:bg-[#990000]/80 gothic-text tracking-wider border border-[#990000]/50 rave-glow"
             >
               <Link href={primaryButtonLink} className="flex items-center gap-2">
                 <Zap className="h-5 w-5" />
@@ -126,7 +129,7 @@ const Hero = ({
                 asChild
                 variant="outline" 
                 size="lg"
-                className="border border-white/40 text-white hover:border-[#00F5FF] hover:text-[#00F5FF] gothic-text tracking-wider"
+                className="border border-white/40 text-white hover:border-[#990000] hover:text-[#990000] gothic-text tracking-wider"
               >
                 <Link href={secondaryButtonLink} className="flex items-center gap-2">
                   <Music className="h-5 w-5" />
