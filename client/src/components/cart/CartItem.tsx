@@ -21,9 +21,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   };
 
   return (
-    <div className="flex gap-4 py-4 border-b border-[#e60073]/30">
+    <div className="flex gap-4 py-4 border-b border-[#e60000]/30">
       {/* Product Image */}
-      <div className="w-20 h-20 bg-black rounded-md overflow-hidden flex-shrink-0 border border-[#e60073]/30">
+      <div className="w-20 h-20 bg-black rounded-md overflow-hidden flex-shrink-0 border border-[#e60000]/30">
         <img
           src={item.product.images[0]}
           alt={item.product.name}
@@ -36,7 +36,6 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         <h4 className="font-medium text-sm line-clamp-1 text-white gothic-text">{item.product.name}</h4>
         
         <div className="flex flex-wrap gap-x-2 text-xs text-white/60 mt-1">
-          <span>Color: {item.variant.color}</span>
           <span>Size: {item.variant.size}</span>
         </div>
 
@@ -45,7 +44,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             <Button 
               variant="outline" 
               size="icon" 
-              className="h-6 w-6 border-[#e60073]/40 text-white hover:bg-[#e60073]/20 hover:border-[#e60073]" 
+              className="h-6 w-6 border-[#e60000]/40 text-white hover:bg-[#e60000]/20 hover:border-[#e60000]" 
               onClick={() => handleQuantityChange(-1)}
               disabled={item.quantity <= 1}
             >
@@ -57,7 +56,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             <Button 
               variant="outline" 
               size="icon" 
-              className="h-6 w-6 border-[#e60073]/40 text-white hover:bg-[#e60073]/20 hover:border-[#e60073]" 
+              className="h-6 w-6 border-[#e60000]/40 text-white hover:bg-[#e60000]/20 hover:border-[#e60000]" 
               onClick={() => handleQuantityChange(1)}
             >
               <Plus className="h-3 w-3" />
@@ -71,7 +70,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-6 w-6 text-white/60 hover:text-[#e60073] hover:bg-[#e60073]/10" 
+              className="h-6 w-6 text-white/60 hover:text-[#e60000] hover:bg-[#e60000]/10" 
               onClick={handleRemove}
             >
               <Trash2 className="h-3 w-3" />

@@ -680,7 +680,7 @@ const Checkout = () => {
                                   <div className="flex-grow">
                                     <h4 className="font-medium text-white">{item.product.name}</h4>
                                     <p className="text-sm text-white/70">
-                                      Size: {item.variant.size}, Color: {item.variant.color}
+                                      Size: {item.variant.size}
                                     </p>
                                     <div className="flex justify-between mt-1">
                                       <span className="text-sm text-white/70">Qty: {item.quantity}</span>
@@ -769,7 +769,7 @@ const Checkout = () => {
                         <div className="flex-grow">
                           <h4 className="font-medium">{item.product.name}</h4>
                           <p className="text-xs text-white/70 mb-1">
-                            Size: {item.variant.size}, Color: {item.variant.color}
+                            Size: {item.variant.size}
                           </p>
                           <div className="flex justify-between">
                             <span className="text-sm">

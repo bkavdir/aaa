@@ -24,7 +24,6 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   
   const { data: product, isLoading, error } = useQuery<ProductWithVariants>({
@@ -42,7 +41,7 @@ const ProductDetail = () => {
   };
   
   const handleAddToCart = () => {
-    if (!product || !selectedColor || !selectedSize) {
+    if (!product || !selectedSize) {
       toast({
         title: "Please select options",
         description: "You need to select color and size before adding to cart",
@@ -53,7 +52,7 @@ const ProductDetail = () => {
     
     // Find the selected variant
     const selectedVariant = product.variants.find(
-      v => v.color === selectedColor && v.size === selectedSize
+      v => v.size === selectedSize
     );
     
     if (!selectedVariant) {
@@ -128,14 +127,13 @@ const ProductDetail = () => {
     );
   }
   
-  // Get unique colors and sizes from variants
-  const colors = [...new Set(product.variants.map(v => v.color))];
-  const sizes = [...new Set(product.variants.map(v => v.size))];
+  // Get unique sizes from variants
+  const sizes = Array.from(new Set(product.variants.map(v => v.size)));
   
   // Check if a color-size combination is available
-  const isVariantAvailable = (color: string, size: string) => {
+  const isVariantAvailable = (size: string) => {
     return product.variants.some(
-      v => v.color === color && v.size === size && v.stockQuantity > 0
+      v => v.size === size && v.stockQuantity > 0
     );
   };
   
@@ -200,58 +198,21 @@ const ProductDetail = () => {
             {/* Description */}
             <p className="text-muted-foreground mb-8">{product.description}</p>
             
-            {/* Color Selection */}
-            <div className="mb-6">
-              <h3 className="text-sm font-medium mb-3">Color: {selectedColor || "Select a color"}</h3>
-              <div className="flex flex-wrap gap-2">
-                {colors.map((color) => {
-                  // Map color names to tailwind colors
-                  const bgColorClass = 
-                    color.toLowerCase() === 'cyan' ? 'bg-[hsl(184,100%,50%)]' : 
-                    color.toLowerCase() === 'magenta' ? 'bg-[hsl(320,100%,50%)]' : 
-                    color.toLowerCase() === 'yellow' ? 'bg-[hsl(60,100%,50%)]' : 
-                    `bg-${color.toLowerCase()}`;
-                  
-                  return (
-                    <button
-                      key={color}
-                      className={`w-8 h-8 rounded-full ${bgColorClass} flex items-center justify-center ${
-                        selectedColor === color ? 'ring-2 ring-white ring-offset-2 ring-offset-background' : ''
-                      }`}
-                      onClick={() => setSelectedColor(color)}
-                      title={color}
-                    >
-                      {selectedColor === color && (
-                        <svg 
-                          className={`w-4 h-4 ${['Yellow', 'White'].includes(color) ? 'text-black' : 'text-white'}`} 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+
             
             {/* Size Selection */}
             <div className="mb-8">
               <h3 className="text-sm font-medium mb-3">Size: {selectedSize || "Select a size"}</h3>
               <div className="flex flex-wrap gap-2">
                 {sizes.map((size) => {
-                  const isAvailable = selectedColor 
-                    ? isVariantAvailable(selectedColor, size)
-                    : true;
+                  const isAvailable = isVariantAvailable(size);
                   
                   return (
                     <Button
                       key={size}
                       variant={selectedSize === size ? "default" : "outline"}
                       onClick={() => setSelectedSize(size)}
-                      disabled={selectedColor && !isAvailable}
+                      disabled={ !isAvailable}
                       className={`min-w-[40px] ${
                         selectedSize === size ? 'bg-[hsl(184,100%,50%)] text-black hover:bg-[hsl(184,100%,45%)]' : ''
                       }`}

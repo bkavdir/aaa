@@ -68,14 +68,12 @@ export type InsertProduct = z.infer<typeof insertProductSchema>;
 export const productVariants = pgTable("product_variants", {
   id: serial("id").primaryKey(),
   productId: integer("product_id").notNull(),
-  color: text("color").notNull(),
   size: text("size").notNull(),
   stockQuantity: integer("stock_quantity").notNull(),
 });
 
 export const insertProductVariantSchema = createInsertSchema(productVariants).pick({
   productId: true,
-  color: true,
   size: true,
   stockQuantity: true,
 });

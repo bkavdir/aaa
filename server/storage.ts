@@ -114,7 +114,12 @@ export class MemStorage implements IStorage {
 
   async createCategory(insertCategory: InsertCategory): Promise<Category> {
     const id = this.categoryIdCounter++;
-    const category: Category = { ...insertCategory, id };
+    // Ensure description is null instead of undefined to match Category type
+    const category: Category = { 
+      ...insertCategory, 
+      id,
+      description: insertCategory.description ?? null 
+    };
     this.categories.set(id, category);
     return category;
   }
@@ -151,7 +156,19 @@ export class MemStorage implements IStorage {
   async createProduct(insertProduct: InsertProduct): Promise<Product> {
     const id = this.productIdCounter++;
     const createdAt = new Date();
-    const product: Product = { ...insertProduct, id, createdAt };
+    const product: Product = { 
+      id,
+      name: insertProduct.name,
+      slug: insertProduct.slug,
+      description: insertProduct.description,
+      price: insertProduct.price,
+      salePrice: insertProduct.salePrice ?? null,
+      images: [...insertProduct.images], // Ensure images is properly typed as string[]
+      categoryId: insertProduct.categoryId,
+      isNewArrival: insertProduct.isNewArrival ?? null,
+      isFeatured: insertProduct.isFeatured ?? null,
+      createdAt
+    };
     this.products.set(id, product);
     return product;
   }
@@ -343,52 +360,34 @@ export class MemStorage implements IStorage {
     // Sample Product Variants
     const variants: InsertProductVariant[] = [
       // Mesh Reflective Top Variants
-      { productId: 1, color: "Cyan", size: "S", stockQuantity: 10 },
-      { productId: 1, color: "Cyan", size: "M", stockQuantity: 15 },
-      { productId: 1, color: "Cyan", size: "L", stockQuantity: 12 },
-      { productId: 1, color: "Magenta", size: "S", stockQuantity: 8 },
-      { productId: 1, color: "Magenta", size: "M", stockQuantity: 14 },
-      { productId: 1, color: "Magenta", size: "L", stockQuantity: 11 },
-      { productId: 1, color: "Yellow", size: "S", stockQuantity: 7 },
-      { productId: 1, color: "Yellow", size: "M", stockQuantity: 13 },
-      { productId: 1, color: "Yellow", size: "L", stockQuantity: 9 },
+      { productId: 1, size: "S", stockQuantity: 10 },
+      { productId: 1, size: "M", stockQuantity: 15 },
+      { productId: 1, size: "L", stockQuantity: 12 },
+      { productId: 1, size: "XL", stockQuantity: 8 },
       
       // Cyber Pants Variants
-      { productId: 2, color: "Black", size: "S", stockQuantity: 8 },
-      { productId: 2, color: "Black", size: "M", stockQuantity: 10 },
-      { productId: 2, color: "Black", size: "L", stockQuantity: 12 },
-      { productId: 2, color: "White", size: "S", stockQuantity: 6 },
-      { productId: 2, color: "White", size: "M", stockQuantity: 9 },
-      { productId: 2, color: "White", size: "L", stockQuantity: 11 },
+      { productId: 2, size: "S", stockQuantity: 8 },
+      { productId: 2, size: "M", stockQuantity: 10 },
+      { productId: 2, size: "L", stockQuantity: 12 },
+      { productId: 2, size: "XL", stockQuantity: 6 },
       
       // Holographic Bodysuit Variants
-      { productId: 3, color: "Cyan", size: "S", stockQuantity: 5 },
-      { productId: 3, color: "Cyan", size: "M", stockQuantity: 8 },
-      { productId: 3, color: "Cyan", size: "L", stockQuantity: 6 },
-      { productId: 3, color: "Magenta", size: "S", stockQuantity: 4 },
-      { productId: 3, color: "Magenta", size: "M", stockQuantity: 7 },
-      { productId: 3, color: "Magenta", size: "L", stockQuantity: 5 },
+      { productId: 3, size: "S", stockQuantity: 5 },
+      { productId: 3, size: "M", stockQuantity: 8 },
+      { productId: 3, size: "L", stockQuantity: 6 },
       
       // LED Light Glasses Variants
-      { productId: 4, color: "Cyan", size: "One Size", stockQuantity: 20 },
-      { productId: 4, color: "Magenta", size: "One Size", stockQuantity: 18 },
-      { productId: 4, color: "Yellow", size: "One Size", stockQuantity: 15 },
+      { productId: 4, size: "One Size", stockQuantity: 20 },
       
       // Neon Crop Top Variants
-      { productId: 5, color: "Neon Green", size: "S", stockQuantity: 7 },
-      { productId: 5, color: "Neon Green", size: "M", stockQuantity: 9 },
-      { productId: 5, color: "Neon Green", size: "L", stockQuantity: 6 },
-      { productId: 5, color: "Neon Pink", size: "S", stockQuantity: 8 },
-      { productId: 5, color: "Neon Pink", size: "M", stockQuantity: 10 },
-      { productId: 5, color: "Neon Pink", size: "L", stockQuantity: 7 },
+      { productId: 5, size: "S", stockQuantity: 7 },
+      { productId: 5, size: "M", stockQuantity: 9 },
+      { productId: 5, size: "L", stockQuantity: 6 },
       
       // Holographic Shorts Variants
-      { productId: 6, color: "Silver", size: "S", stockQuantity: 6 },
-      { productId: 6, color: "Silver", size: "M", stockQuantity: 9 },
-      { productId: 6, color: "Silver", size: "L", stockQuantity: 7 },
-      { productId: 6, color: "Gold", size: "S", stockQuantity: 5 },
-      { productId: 6, color: "Gold", size: "M", stockQuantity: 8 },
-      { productId: 6, color: "Gold", size: "L", stockQuantity: 6 }
+      { productId: 6, size: "S", stockQuantity: 6 },
+      { productId: 6, size: "M", stockQuantity: 9 },
+      { productId: 6, size: "L", stockQuantity: 7 }
     ];
 
     variants.forEach(variant => {

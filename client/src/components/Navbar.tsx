@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="bg-black/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#e60073]/40">
+    <header className="bg-black/95 backdrop-blur-sm sticky top-0 z-50 border-b border-[#e60000]/40">
       <div className="container mx-auto px-4">
         {/* Announcement Bar */}
         <div className="hidden md:flex justify-center py-2 text-white/70 text-sm rave-glow">
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center py-3">
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMobileMenu} className="hover:bg-[#e60073]/20">
+            <Button variant="ghost" size="icon" onClick={toggleMobileMenu} className="hover:bg-[#e60000]/20">
               <Menu className="h-6 w-6 text-white" />
             </Button>
           </div>
@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
                 <li key={link.path}>
                   <Link 
                     href={link.path}
-                    className="nav-link text-white hover:text-[#e60073] transition-colors duration-200 tracking-wider"
+                    className="nav-link text-white hover:text-[#e60000] transition-colors duration-200 tracking-wider"
                   >
                     {link.name}
                   </Link>
@@ -91,29 +91,29 @@ const Navbar: React.FC = () => {
           
           {/* Icons */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" onClick={toggleSearchBar} className="hover:bg-[#e60073]/20">
+            <Button variant="ghost" size="icon" onClick={toggleSearchBar} className="hover:bg-[#e60000]/20">
               <Search className="h-5 w-5 text-white" />
             </Button>
             
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-[#e60073]/20">
+                <Button variant="ghost" size="icon" className="hover:bg-[#e60000]/20">
                   <User className="h-5 w-5 text-white" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="bg-black border-l border-[#e60073]/40">
+              <SheetContent className="bg-black border-l border-[#e60000]/40">
                 <div className="py-4">
                   <h3 className="text-lg font-semibold mb-4 gothic-text text-white">Your Vibe</h3>
                   <p className="text-white/70 mb-4">Sign in to view orders and manage your account</p>
                   <div className="space-y-2">
-                    <Button className="w-full bg-[#e60073] hover:bg-[#e60073]/80">Sign In</Button>
-                    <Button variant="outline" className="w-full border-[#e60073]/40 text-white hover:bg-[#e60073]/20">Create Account</Button>
+                    <Button className="w-full bg-[#e60000] hover:bg-[#e60000]/80">Sign In</Button>
+                    <Button variant="outline" className="w-full border-[#e60000]/40 text-white hover:bg-[#e60000]/20">Create Account</Button>
                   </div>
                 </div>
               </SheetContent>
             </Sheet>
             
-            <Button variant="ghost" size="icon" onClick={toggleCart} className="hover:bg-[#e60073]/20">
+            <Button variant="ghost" size="icon" onClick={toggleCart} className="hover:bg-[#e60000]/20">
               <CartIcon itemCount={totalItems} className="text-white" />
             </Button>
           </div>
@@ -121,19 +121,19 @@ const Navbar: React.FC = () => {
         
         {/* Search Bar - Conditional */}
         {showSearch && (
-          <div className="py-3 border-t border-[#e60073]/40">
+          <div className="py-3 border-t border-[#e60000]/40">
             <form onSubmit={handleSearch} className="flex items-center">
               <Input
                 type="search"
                 name="search"
                 placeholder="Search products..."
-                className="flex-grow bg-black/50 border-[#e60073]/40 text-white"
+                className="flex-grow bg-black/50 border-[#e60000]/40 text-white"
                 autoFocus
               />
-              <Button type="submit" variant="ghost" className="ml-2 text-white hover:bg-[#e60073]/20">
+              <Button type="submit" variant="ghost" className="ml-2 text-white hover:bg-[#e60000]/20">
                 <Search className="h-5 w-5" />
               </Button>
-              <Button type="button" variant="ghost" onClick={toggleSearchBar} className="text-white hover:bg-[#e60073]/20">
+              <Button type="button" variant="ghost" onClick={toggleSearchBar} className="text-white hover:bg-[#e60000]/20">
                 <X className="h-5 w-5" />
               </Button>
             </form>
@@ -143,14 +143,14 @@ const Navbar: React.FC = () => {
       
       {/* Mobile Menu - Slide Down */}
       {showMobileMenu && (
-        <nav className="bg-black border-t border-[#e60073]/40 md:hidden">
+        <nav className="bg-black border-t border-[#e60000]/40 md:hidden">
           <div className="container mx-auto px-4 py-4">
             <ul className="space-y-4 uppercase text-sm font-medium">
               {navLinks.map((link) => (
                 <li key={link.path}>
                   <Link 
                     href={link.path}
-                    className="nav-link block py-2 text-white hover:text-[#e60073] tracking-wider"
+                    className="nav-link block py-2 text-white hover:text-[#e60000] tracking-wider"
                     onClick={() => setShowMobileMenu(false)}
                   >
                     {link.name}
