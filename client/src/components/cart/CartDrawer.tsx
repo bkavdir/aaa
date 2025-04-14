@@ -21,14 +21,14 @@ const CartDrawer: React.FC = () => {
 
   return (
     <Sheet open={isCartOpen} onOpenChange={toggleCart}>
-      <SheetContent className="w-full sm:max-w-md bg-black border-l border-[#e60073]/40">
+      <SheetContent className="w-full sm:max-w-md bg-black border-l border-[#990000]/40">
         <SheetHeader className="flex flex-row items-center justify-between">
           <SheetTitle className="flex items-center gothic-text text-white rave-glow">
             <ShoppingBag className="mr-2 h-5 w-5" />
             YOUR BASSLINE
           </SheetTitle>
           <SheetClose asChild>
-            <Button variant="ghost" size="icon" className="text-white hover:bg-[#e60073]/20">
+            <Button variant="ghost" size="icon" className="text-white hover:bg-[#990000]/20">
               <X className="h-4 w-4" />
             </Button>
           </SheetClose>
@@ -36,14 +36,14 @@ const CartDrawer: React.FC = () => {
 
         {isEmpty ? (
           <div className="flex flex-col items-center justify-center h-[70vh]">
-            <div className="bg-[#e60073]/10 p-8 rounded-full mb-6 rave-border">
+            <div className="bg-[#990000]/10 p-8 rounded-full mb-6 rave-border">
               <ShoppingBag className="h-16 w-16 text-white mb-4" />
             </div>
             <h3 className="text-xl font-medium mb-2 gothic-text text-white">Your cart is empty</h3>
             <p className="text-white/70 text-center mb-6">
               Drop some hard techno gear in your cart for the perfect rave outfit.
             </p>
-            <Button asChild className="bg-[#e60073] hover:bg-[#e60073]/80 rave-border">
+            <Button asChild className="bg-[#990000] hover:bg-[#990000]/80 rave-border">
               <Link href="/shop">START SHOPPING</Link>
             </Button>
           </div>
@@ -66,7 +66,7 @@ const CartDrawer: React.FC = () => {
             </div>
 
             <div className="mt-auto pt-4">
-              <Separator className="mb-4 bg-[#e60073]/30" />
+              <Separator className="mb-4 bg-[#990000]/30" />
               
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
@@ -79,7 +79,7 @@ const CartDrawer: React.FC = () => {
                   <span className="text-white">Calculated at checkout</span>
                 </div>
                 
-                <Separator className="bg-[#e60073]/30" />
+                <Separator className="bg-[#990000]/30" />
                 
                 <div className="flex justify-between font-medium">
                   <span className="text-white gothic-text">TOTAL</span>
@@ -88,9 +88,11 @@ const CartDrawer: React.FC = () => {
               </div>
               
               <SheetFooter className="mt-6">
-                <Button className="w-full bg-[#e60073] hover:bg-[#e60073]/80 rave-border gothic-text tracking-wider">
-                  <Zap className="mr-2 h-4 w-4" />
-                  CHECKOUT
+                <Button className="w-full bg-[#990000] hover:bg-[#990000]/80 rave-border gothic-text tracking-wider" asChild>
+                  <Link href="/checkout">
+                    <Zap className="mr-2 h-4 w-4" />
+                    CHECKOUT
+                  </Link>
                 </Button>
               </SheetFooter>
               
