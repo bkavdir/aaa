@@ -61,11 +61,11 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-16 bg-black border-y border-[#e60073]/30 relative overflow-hidden">
+    <section className="py-16 bg-black border-y border-[#990000]/30 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-[20%] left-[15%] w-48 h-48 rounded-full bg-[#e60073]/10 blur-3xl"
+          className="absolute top-[20%] left-[15%] w-48 h-48 rounded-full bg-[#990000]/10 blur-3xl"
           animate={{ 
             scale: [1, 1.4, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -77,7 +77,7 @@ const Newsletter = () => {
           }}
         />
         <motion.div 
-          className="absolute bottom-[10%] right-[25%] w-40 h-40 rounded-full bg-[#00F5FF]/5 blur-3xl"
+          className="absolute bottom-[10%] right-[25%] w-40 h-40 rounded-full bg-[#440000]/5 blur-3xl"
           animate={{ 
             scale: [1, 1.6, 1],
             opacity: [0.1, 0.3, 0.1],
@@ -100,13 +100,13 @@ const Newsletter = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="mb-4 flex justify-center">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full border border-[#e60073] mb-4">
-              <Headphones className="w-8 h-8 text-[#e60073]" />
+            <div className="flex items-center justify-center w-16 h-16 rounded-full border border-[#990000] mb-4">
+              <Headphones className="w-8 h-8 text-[#990000]" />
             </div>
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold uppercase mb-4 text-white gothic-text tracking-wider flex items-center justify-center gap-3">
-            <span className="rave-glow">JOIN OUR</span> <span className="text-[#e60073]">BASSLINE</span>
+            <span className="rave-glow">JOIN OUR</span> <span className="text-[#990000]">BASSLINE</span>
           </h2>
           
           <p className="text-white/70 mb-8">
@@ -115,7 +115,7 @@ const Newsletter = () => {
           
           {isSubmitted ? (
             <motion.div 
-              className="bg-black p-6 rounded-lg border border-[#e60073] rave-glow"
+              className="bg-black p-6 rounded-lg border border-[#990000] rave-glow"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.4 }}
@@ -135,23 +135,23 @@ const Newsletter = () => {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#e60073]" />
+                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#990000]" />
                           <Input 
                             placeholder="Your email address" 
                             type="email"
-                            className="pl-10 pr-4 py-3 bg-black border border-[#e60073]/50 focus:border-[#e60073] text-white"
+                            className="pl-10 pr-4 py-3 bg-black border border-[#990000]/50 focus:border-[#990000] text-white"
                             {...field} 
                           />
                         </div>
                       </FormControl>
-                      <FormMessage className="text-[#e60073]" />
+                      <FormMessage className="text-[#990000]" />
                     </FormItem>
                   )}
                 />
                 <Button 
                   type="submit" 
                   disabled={isPending}
-                  className="bg-[#e60073] hover:bg-[#e60073]/80 text-white py-3 px-8 rounded-md gothic-text uppercase tracking-wider transition-all flex items-center gap-2"
+                  className="bg-[#990000] hover:bg-[#990000]/80 text-white py-3 px-8 rounded-md gothic-text uppercase tracking-wider transition-all flex items-center gap-2"
                 >
                   <Zap className="h-4 w-4" />
                   {isPending ? "SENDING..." : "JOIN NOW"}
