@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import Newsletter from "@/components/Newsletter";
+import InstagramFeed from "@/components/InstagramFeed";
 import { Product } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "wouter";
@@ -19,7 +20,10 @@ const Home = () => {
   // Auto-rotation for featured products
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
+  const [isHoveringCollection, setIsHoveringCollection] = useState(false);
+  const collectionScrollRef = useRef<HTMLDivElement>(null);
 
+  // Auto-rotation effect
   useEffect(() => {
     if (featuredProducts && featuredProducts.length > 0) {
       autoRotateRef.current = setInterval(() => {
@@ -35,6 +39,40 @@ const Home = () => {
       }
     };
   }, [featuredProducts]);
+  
+  // Auto-scrolling effect for horizontal product collection
+  useEffect(() => {
+    const scrollContainer = collectionScrollRef.current;
+    if (!scrollContainer) return;
+
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5; // pixels per frame
+
+    const scroll = () => {
+      if (!scrollContainer || isHoveringCollection) return;
+      
+      scrollPosition += scrollSpeed;
+      
+      // Reset scroll position when reaching the end
+      if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+        scrollPosition = 0;
+      }
+      
+      scrollContainer.scrollLeft = scrollPosition;
+    };
+
+    const animationFrame = () => {
+      scroll();
+      requestAnimationFrame(animationFrame);
+    };
+
+    // Start the animation
+    const animationId = requestAnimationFrame(animationFrame);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [isHoveringCollection]);
 
   const handleProductIndicatorClick = (index: number) => {
     setCurrentProductIndex(index);
@@ -146,49 +184,90 @@ const Home = () => {
                 </div>
               </div>
               
-              {/* Featured Products Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                {featuredProducts?.slice(0, 4).map((product, index) => (
-                  <motion.div
-                    key={product.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="relative group"
-                  >
-                    <Link href={`/product/${product.slug}`}>
-                      <div className="rounded-lg overflow-hidden bg-[#0a0a0a] shadow-sm hover:shadow-[#990000]/10 transition-all duration-300">
-                        <div className="h-52 relative overflow-hidden">
-                          <img 
-                            src={product.images[0]} 
-                            alt={product.name}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                            <div className="absolute bottom-0 left-0 right-0 p-3">
-                              <Button size="sm" className="w-full bg-[#990000] hover:bg-[#990000]/80 text-white border border-[#990000]/20">
-                                Shop Now
-                              </Button>
+              {/* Horizontal Sliding Collection */}
+              <div className="mb-8">
+                <div className="flex justify-between items-center mb-5">
+                  <h3 className="text-xl font-bold text-white gothic-text">
+                    <span style={{ textShadow: '0 0 2px #990000' }}>Featured Collection</span>
+                  </h3>
+                  <Link href="/shop">
+                    <span className="text-[#990000] text-sm hover:underline transition-all">View All</span>
+                  </Link>
+                </div>
+                
+                <style dangerouslySetInnerHTML={{
+                  __html: `
+                    .no-scrollbar::-webkit-scrollbar {
+                      display: none;
+                    }
+                    .no-scrollbar {
+                      -ms-overflow-style: none;
+                      scrollbar-width: none;
+                    }
+                  `
+                }} />
+                
+                <div 
+                  ref={collectionScrollRef}
+                  className="overflow-x-auto no-scrollbar pb-6"
+                  onMouseEnter={() => setIsHoveringCollection(true)}
+                  onMouseLeave={() => setIsHoveringCollection(false)}
+                >
+                  <div className="flex gap-4" style={{ width: 'max-content', minWidth: '100%' }}>
+                    {featuredProducts?.map((product, index) => (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="w-64 flex-shrink-0 relative group"
+                      >
+                        <Link href={`/product/${product.slug}`}>
+                          <div className="rounded-lg overflow-hidden bg-[#0a0a0a] shadow-sm hover:shadow-[0_0_10px_rgba(153,0,0,0.15)] transition-all duration-300">
+                            <div className="h-64 relative overflow-hidden">
+                              <img 
+                                src={product.images[0]} 
+                                alt={product.name}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-80"></div>
+                              
+                              {/* Hover Overlay */}
+                              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                  <Button size="sm" className="w-full bg-[#990000] hover:bg-[#990000]/80 text-white border border-[#990000]/20">
+                                    Shop Now
+                                  </Button>
+                                </div>
+                              </div>
+                              
+                              {/* Product Info */}
+                              <div className="absolute bottom-0 left-0 right-0 p-3">
+                                <h3 className="text-white gothic-text font-bold truncate">{product.name}</h3>
+                                <div className="flex items-center justify-between mt-1">
+                                  <span className="text-white font-medium">
+                                    €{product.salePrice || product.price}
+                                  </span>
+                                  {product.salePrice && (
+                                    <span className="text-xs line-through text-gray-400">
+                                      €{product.price}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="p-3">
-                          <h3 className="text-sm font-medium text-white gothic-text truncate">{product.name}</h3>
-                          <div className="flex items-center justify-between mt-1">
-                            <span className="text-white font-bold">
-                              €{product.salePrice || product.price}
-                            </span>
-                            {product.salePrice && (
-                              <span className="text-xs line-through text-gray-500">
-                                €{product.price}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex justify-center mt-2 gap-1">
+                  <div className="h-1 w-16 bg-[#990000]" style={{ boxShadow: '0 0 5px rgba(153,0,0,0.5)' }}></div>
+                  <div className="h-1 w-4 bg-[#990000]/30"></div>
+                  <div className="h-1 w-4 bg-[#990000]/30"></div>
+                </div>
               </div>
               
               <div className="text-center mt-8">
@@ -312,6 +391,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
+      {/* Instagram Feed Section */}
+      <InstagramFeed />
       
       <Newsletter />
     </>
