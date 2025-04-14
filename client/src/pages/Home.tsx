@@ -87,179 +87,168 @@ const Home = () => {
         secondaryButtonLink="/shop"
       />
       
-      {/* Our First Drop Section - Auto-Rotating Products */}
-      <section className="py-12 bg-black">
+      {/* Our First Drop Section - New Design */}
+      <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold uppercase text-[#990000] gothic-text rave-glow">
-              Our First Drop
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold uppercase text-[#990000] gothic-text">
+              <span className="relative inline-block">
+                Our First Drop
+                <span className="absolute -inset-1 bg-[#990000]/5 blur-md rounded-full"></span>
+              </span>
             </h2>
-            <Link href="/shop" className="uppercase text-sm font-bold tracking-wider text-[#990000] hover:underline">
-              View All
-            </Link>
+            <p className="text-gray-400 mt-2 max-w-2xl mx-auto">
+              Thank you for being with us on this journey. From concept to reality, every piece is crafted with passion for the underground scene.
+            </p>
           </div>
           
           {isLoadingFeatured ? (
             <div className="grid grid-cols-1 gap-6">
-              <Skeleton className="h-[320px] w-full rounded-lg" />
+              <Skeleton className="h-[400px] w-full rounded-lg" />
             </div>
           ) : (
             <>
-              <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto">
-                {/* Main product display */}
-                <motion.div 
-                  className="flex-1 relative rounded-lg overflow-hidden shadow-lg"
-                  key={featuredProducts?.[currentProductIndex]?.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {featuredProducts && featuredProducts.length > 0 && (
-                    <Link href={`/product/${featuredProducts[currentProductIndex].slug}`}>
-                      <div className="group cursor-pointer h-[320px] relative">
-                        <img 
-                          src={featuredProducts[currentProductIndex].images[0]} 
-                          alt={featuredProducts[currentProductIndex].name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-                        <div className="absolute bottom-0 left-0 p-6">
-                          <h3 className="text-xl font-bold gothic-text text-white mb-2">
-                            {featuredProducts[currentProductIndex].name}
-                          </h3>
-                          <p className="text-gray-300 mb-3 text-sm">
-                            {featuredProducts[currentProductIndex].description.slice(0, 80)}...
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className="text-xl font-bold text-white">
-                                €{featuredProducts[currentProductIndex].salePrice || featuredProducts[currentProductIndex].price}
-                              </span>
-                              {featuredProducts[currentProductIndex].salePrice && (
-                                <span className="text-sm line-through text-gray-400">
-                                  €{featuredProducts[currentProductIndex].price}
-                                </span>
-                              )}
+              {/* Limited Edition Banner */}
+              <div className="relative overflow-hidden rounded-lg shadow-lg mb-10 max-w-5xl mx-auto">
+                <div className="absolute inset-0 bg-[#990000]/10 z-10"></div>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: "url('https://images.unsplash.com/photo-1516016343867-2f608c783263?q=80&w=1200&auto=format&fit=crop')",
+                    animation: "slowPulse 8s infinite alternate", // This creates a slow-mo effect
+                  }}
+                ></div>
+                <style dangerouslySetInnerHTML={{
+                  __html: `
+                    @keyframes slowPulse {
+                      0% { transform: scale(1.0); opacity: 0.8; }
+                      100% { transform: scale(1.05); opacity: 1; }
+                    }
+                    @keyframes subtleGlow {
+                      0% { text-shadow: 0 0 2px #990000, 0 0 3px #990000; }
+                      50% { text-shadow: 0 0 4px #990000, 0 0 6px #990000; }
+                      100% { text-shadow: 0 0 2px #990000, 0 0 3px #990000; }
+                    }
+                  `
+                }} />
+                <div className="relative h-64 flex items-center justify-center z-20 px-4">
+                  <div className="text-center">
+                    <h3 className="text-3xl font-bold uppercase mb-2 text-white gothic-text" style={{ animation: "subtleGlow 4s infinite" }}>
+                      Limited Edition Collection
+                    </h3>
+                    <p className="text-white mb-4 max-w-lg mx-auto">
+                      Crafted for the darkest clubs and the hardest beats. A balance of functionality and transgressive style.
+                    </p>
+                    <Button className="bg-[#990000] hover:bg-[#990000]/80 text-white border border-[#990000]/30">
+                      <Link href="/shop">Shop Limited Edition</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Featured Products Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                {featuredProducts?.slice(0, 4).map((product, index) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="relative group"
+                  >
+                    <Link href={`/product/${product.slug}`}>
+                      <div className="rounded-lg overflow-hidden bg-[#0a0a0a] shadow-sm hover:shadow-[#990000]/10 transition-all duration-300">
+                        <div className="h-52 relative overflow-hidden">
+                          <img 
+                            src={product.images[0]} 
+                            alt={product.name}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute bottom-0 left-0 right-0 p-3">
+                              <Button size="sm" className="w-full bg-[#990000] hover:bg-[#990000]/80 text-white border border-[#990000]/20">
+                                Shop Now
+                              </Button>
                             </div>
-                            <Button size="sm" className="bg-[#990000] hover:bg-[#990000]/80">
-                              Shop
-                            </Button>
+                          </div>
+                        </div>
+                        <div className="p-3">
+                          <h3 className="text-sm font-medium text-white gothic-text truncate">{product.name}</h3>
+                          <div className="flex items-center justify-between mt-1">
+                            <span className="text-white font-bold">
+                              €{product.salePrice || product.price}
+                            </span>
+                            {product.salePrice && (
+                              <span className="text-xs line-through text-gray-500">
+                                €{product.price}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
                     </Link>
-                  )}
-                </motion.div>
-                
-                {/* Product indicators and thumbnails */}
-                <div className="md:w-1/5 flex flex-row md:flex-col gap-2">
-                  {featuredProducts?.slice(0, 4).map((product, index) => (
-                    <button 
-                      key={product.id}
-                      onClick={() => handleProductIndicatorClick(index)}
-                      className={`relative h-16 md:h-[75px] overflow-hidden rounded ${index === currentProductIndex ? 'ring-2 ring-[#990000]' : 'opacity-70'}`}
-                      style={{ flex: '0 0 calc(25% - 6px)' }}
-                    >
-                      <img 
-                        src={product.images[0]} 
-                        alt={product.name} 
-                        className="w-full h-full object-cover"
-                      />
-                      {index === currentProductIndex && (
-                        <div className="absolute inset-0 bg-[#990000]/20"></div>
-                      )}
-                    </button>
-                  ))}
-                </div>
+                  </motion.div>
+                ))}
               </div>
               
-              {/* Indicator dots for mobile */}
-              <div className="flex justify-center mt-4 gap-2">
-                {featuredProducts?.slice(0, 4).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleProductIndicatorClick(index)}
-                    className={`w-2 h-2 rounded-full ${
-                      index === currentProductIndex ? 'bg-[#990000]' : 'bg-gray-600'
-                    }`}
-                  />
-                ))}
+              <div className="text-center mt-8">
+                <Link href="/shop">
+                  <Button variant="outline" className="border border-[#990000] text-[#990000] hover:bg-[#990000]/10">
+                    View All Products
+                  </Button>
+                </Link>
               </div>
             </>
           )}
         </div>
       </section>
       
-      {/* Festival Collection Section */}
+      {/* Our Journey & Fabrics Section */}
       <section className="py-16 bg-[#0a0a0a]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold uppercase mb-2 text-[#990000] gothic-text rave-glow">
-              Elevate Your Rave Experience
-            </h2>
-            <p className="text-gray-400 italic">Based in Dublin, Inspired by Berlin</p>
-          </div>
-          
-          {/* Slowed down GIF section - typically this would be an actual GIF */}
-          <div className="relative max-w-4xl mx-auto mb-12 overflow-hidden rounded-lg shadow-lg" style={{height: "200px"}}>
-            <div className="absolute inset-0 bg-[#990000]/10 z-10"></div>
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1516016343867-2f608c783263?q=80&w=1200&auto=format&fit=crop')",
-                animation: "slowPulse 8s infinite alternate", // This creates a slow-mo effect
-              }}
-            ></div>
-            <style dangerouslySetInnerHTML={{
-              __html: `
-                @keyframes slowPulse {
-                  0% { transform: scale(1.0); opacity: 0.8; }
-                  100% { transform: scale(1.05); opacity: 1; }
-                }
-              `
-            }} />
-            <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="text-center">
-                <h3 className="text-3xl font-bold uppercase mb-2 text-white gothic-text rave-glow">Limited Edition</h3>
-                <p className="text-white mb-4">Techno-inspired clothing for the darkest clubs</p>
-                <Button className="bg-[#990000] hover:bg-[#990000]/80 text-white">
-                  <Link href="/shop">Shop the Collection</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative rounded-lg overflow-hidden h-96 group">
-              <img 
-                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                alt="Women's Festival Collection" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-              <div className="absolute bottom-0 left-0 p-8">
-                <h3 className="text-3xl font-bold uppercase mb-3 text-white gothic-text">Women's Collection</h3>
-                <p className="text-gray-300 mb-4 max-w-xs">Futuristic designs that glow under UV lights. Be the center of attention.</p>
-                <Button asChild variant="outline" className="border-2 border-[#990000] text-[#990000] hover:bg-[#990000] hover:text-black">
-                  <Link href="/category/womens">EXPLORE</Link>
-                </Button>
-              </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold uppercase mb-2 text-[#990000] gothic-text">
+                <span className="relative inline-block">
+                  Our Journey
+                  <span className="absolute -inset-1 bg-[#990000]/5 blur-md rounded-full"></span>
+                </span>
+              </h2>
+              <p className="text-gray-400 italic mb-1">Based in Dublin, Inspired by Berlin</p>
             </div>
             
-            <div className="relative rounded-lg overflow-hidden h-96 group">
-              <img 
-                src="https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                alt="Men's Festival Collection" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-              <div className="absolute bottom-0 left-0 p-8">
-                <h3 className="text-3xl font-bold uppercase mb-3 text-white gothic-text">Men's Collection</h3>
-                <p className="text-gray-300 mb-4 max-w-xs">Technical fabrics with bold prints and reflective details designed for all-night comfort.</p>
-                <Button asChild variant="outline" className="border-2 border-[#990000] text-[#990000] hover:bg-[#990000] hover:text-black">
-                  <Link href="/category/mens">EXPLORE</Link>
-                </Button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4 gothic-text">From Underground to Wardrobe</h3>
+                <p className="text-gray-300 mb-4">Born from the dark rooms of Berlin's techno scene, our collection represents the intersection of avant-garde fashion and club functionality. Each piece tells a story of late nights, pulsing beats, and the raw energy that drives the underground.</p>
+                <p className="text-gray-300">We're committed to creating clothing that enhances your experience, whether you're dancing until dawn or expressing your connection to the culture. Thank you for being part of our community.</p>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4 gothic-text">Premium Materials</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start">
+                    <div className="h-3 w-3 rounded-full bg-[#990000] mt-1.5 mr-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-white">Reflective Tech Fabrics</h4>
+                      <p className="text-gray-300 text-sm">High-visibility materials that react to light, perfect for making a statement in dark club environments.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="h-3 w-3 rounded-full bg-[#990000] mt-1.5 mr-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-white">Performance Mesh</h4>
+                      <p className="text-gray-300 text-sm">Breathable, stretch materials designed for all-night comfort and movement.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="h-3 w-3 rounded-full bg-[#990000] mt-1.5 mr-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-white">UV-Reactive Treatments</h4>
+                      <p className="text-gray-300 text-sm">Special dyes and prints that transform under club lighting for a dynamic look.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -269,42 +258,56 @@ const Home = () => {
       {/* Our Playlists Section */}
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-10">
-            <h2 className="text-3xl font-bold uppercase text-[#990000] gothic-text rave-glow">
-              Our Playlists
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold uppercase mb-2 text-[#990000] gothic-text">
+              <span className="relative inline-block">
+                Our Playlists
+                <span className="absolute -inset-1 bg-[#990000]/5 blur-md rounded-full"></span>
+              </span>
             </h2>
-            <span className="text-sm font-medium text-gray-400">
-              Sounds that inspired our collection
-            </span>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              The sounds that inspired our collection. Dark, hypnotic beats from the underground.
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {playlists.map((playlist, index) => (
-              <a 
-                href={playlist.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                key={index} 
-                className="group rounded-lg overflow-hidden bg-black/40 hover:bg-black/60 transition-colors"
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img src={playlist.image} alt={playlist.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <PlayCircle size={48} className="text-white" />
+                <a 
+                  href={playlist.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group block rounded-lg overflow-hidden bg-[#0a0a0a] hover:shadow-[0_0_10px_rgba(153,0,0,0.15)] transition-all duration-300"
+                >
+                  <div className="relative h-52 overflow-hidden">
+                    <img src={playlist.image} alt={playlist.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black to-black/20 opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="h-14 w-14 rounded-full bg-[#990000]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transform group-hover:scale-100 scale-90 transition-all duration-300">
+                        <PlayCircle size={36} className="text-white" style={{ filter: 'drop-shadow(0 0 2px #990000)' }} />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-xl font-semibold text-white gothic-text">{playlist.name}</h3>
-                    <ExternalLink size={16} className="text-gray-400 group-hover:text-[#990000] transition-colors" />
+                  <div className="p-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <h3 className="text-lg font-bold text-white gothic-text" style={{ textShadow: '0 0 1px #990000' }}>
+                        {playlist.name}
+                      </h3>
+                      <ExternalLink size={16} className="text-[#990000]" />
+                    </div>
+                    <p className="text-gray-400 text-sm mb-3">{playlist.description}</p>
+                    <div className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#990000]"></div>
+                      <span className="text-xs text-gray-300">Spotify</span>
+                    </div>
                   </div>
-                  <p className="text-gray-400 text-sm">{playlist.description}</p>
-                  <div className="mt-4 flex items-center gap-2">
-                    <Music size={16} className="text-[#990000]" />
-                    <span className="text-sm text-gray-300">Listen on Spotify</span>
-                  </div>
-                </div>
-              </a>
+                </a>
+              </motion.div>
             ))}
           </div>
         </div>
