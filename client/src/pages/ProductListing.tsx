@@ -166,10 +166,10 @@ const ProductListing = () => {
   const handleCategoryChange = (slug: string | null) => {
     setFilters(prev => ({
       ...prev,
-      category: slug,
+      category: slug === "all" ? null : slug,
     }));
     
-    if (slug) {
+    if (slug && slug !== "all") {
       setLocation(`/category/${slug}`);
     } else {
       setLocation("/shop");
@@ -445,7 +445,7 @@ const ProductListing = () => {
                 <SelectValue placeholder="All Categories" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Categories</SelectItem>
+                <SelectItem value="all">All Categories</SelectItem>
                 {categories?.map(category => (
                   <SelectItem key={category.id} value={category.slug}>
                     {category.name}
