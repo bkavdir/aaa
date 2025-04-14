@@ -259,11 +259,11 @@ export class MemStorage implements IStorage {
       {
         name: "Mesh Reflective Top",
         slug: "mesh-reflective-top",
-        description: "This reflective mesh top catches the light for a stunning effect under club lighting. Made with breathable material for all-night comfort.",
+        description: "This mesh top catches the light for a stunning effect under club lighting. Made with breathable material for all-night comfort.",
         price: 39.99,
         salePrice: null,
         images: [
-          "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+          "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRllD6ssXJGFmcQlf-0_u_S5zWEmGXckUxsBGon29hrBjbQjiOEy1O1_8cSqKbhsrW6Nd6pL1Rg42f-gNYm8-wpdoqe65DCOvJyZebLVj9PxKzWNhao9u70WNaais5810VDvGLxQOLh&usqp=CAc"
         ],
         categoryId: 1, // Rave Tops
         isNewArrival: true,

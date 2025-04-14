@@ -134,24 +134,7 @@ const InstagramFeed = () => {
           </div>
         </div>
         
-        {/* About Our Brand/Journey - Integrated into Instagram section */}
-        <div className="mt-12 max-w-3xl mx-auto bg-[#0a0a0a] p-6 rounded-lg border border-[#990000]/10">
-          <div className="flex flex-col md:flex-row gap-6 items-center">
-            <div className="md:w-1/3">
-              <div className="relative">
-                <div className="h-32 w-32 rounded-full bg-[#990000]/5 mx-auto flex items-center justify-center">
-                  <span className="text-5xl gothic-text text-white" style={{ textShadow: '0 0 3px #990000' }}>S</span>
-                </div>
-                <div className="absolute -inset-1 bg-[#990000]/5 blur-lg rounded-full z-0"></div>
-              </div>
-            </div>
-            <div className="md:w-2/3 text-center md:text-left">
-              <h3 className="text-lg font-bold text-white mb-2 gothic-text">From Underground to Wardrobe</h3>
-              <p className="text-gray-300 text-sm mb-3">Born from the dark rooms of Berlin's techno scene, our collection represents the intersection of avant-garde fashion and club functionality. Each piece is crafted with technical fabrics that enhance your rave experience.</p>
-              <p className="text-gray-400 text-xs">Based in Dublin, Inspired by Berlin</p>
-            </div>
-          </div>
-        </div>
+
       </div>
 
       <style dangerouslySetInnerHTML={{

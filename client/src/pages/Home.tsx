@@ -46,7 +46,7 @@ const Home = () => {
     if (!scrollContainer) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 0.5; // pixels per frame
+    const scrollSpeed = 0.25; // pixels per frame
 
     const scroll = () => {
       if (!scrollContainer || isHoveringCollection) return;
@@ -91,7 +91,7 @@ const Home = () => {
     {
       name: "Berlin Underground",
       description: "The dark, hypnotic sounds of Berlin's most infamous clubs",
-      image: "https://images.unsplash.com/photo-1571266028243-5e874fc5b3fe?q=80&w=800&auto=format&fit=crop",
+      image: "https://miro.medium.com/v2/resize:fit:1024/1*XZnX_9GwURSpGTjwBgmLZg.png",
       link: "https://open.spotify.com/playlist/37i9dQZF1DX6J5NfMJS675"
     },
     {
@@ -102,7 +102,7 @@ const Home = () => {
     },
     {
       name: "Warehouse Vibes",
-      description: "Industrial sounds for industrial spaces",
+      description: "Industrial sounds for industrial spaces, unleash yourself",
       image: "https://images.unsplash.com/photo-1504680177321-2e6a879aac86?q=80&w=800&auto=format&fit=crop",
       link: "https://open.spotify.com/playlist/37i9dQZF1DX5wgKYQVRARv"
     }
@@ -116,29 +116,17 @@ const Home = () => {
       </Helmet>
 
       <Hero 
-        imageUrl="https://images.unsplash.com/photo-1558613326-98ee8413e755?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+        imageUrl="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExajE1aGJ4cWQ5Ym12dXlicTh6a3d6cGpiN2NqMnN6djFibDBvZmYyOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Dn9McpMC10Mik/giphy.gif"
         title="Elevate Your Rave Experience"
-        subtitle="Discover our new collection of techno and rave wear designed for the ultimate night out."
+        subtitle="From concept to reality, every piece is crafted with passion for the underground community."
         primaryButtonText="Shop Now"
         primaryButtonLink="/shop"
-        secondaryButtonText="First Drop"
-        secondaryButtonLink="/shop"
       />
       
       {/* Our First Drop Section - New Design */}
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold uppercase text-[#990000] gothic-text">
-              <span className="relative inline-block">
-                Our First Drop
-                <span className="absolute -inset-1 bg-[#990000]/5 blur-md rounded-full"></span>
-              </span>
-            </h2>
-            <p className="text-gray-400 mt-2 max-w-2xl mx-auto">
-              Thank you for being with us on this journey. From concept to reality, every piece is crafted with passion for the underground scene.
-            </p>
-          </div>
+
           
           {isLoadingFeatured ? (
             <div className="grid grid-cols-1 gap-6">
@@ -146,13 +134,14 @@ const Home = () => {
             </div>
           ) : (
             <>
-              {/* Limited Edition Banner */}
-              <div className="relative overflow-hidden rounded-lg shadow-lg mb-10 max-w-5xl mx-auto">
+              
+                            {/* Limited Edition Banner */}
+                            <div className="relative overflow-hidden rounded-lg shadow-lg mb-10 max-w-full mx-auto">
                 <div className="absolute inset-0 bg-[#990000]/10 z-10"></div>
                 <div 
                   className="absolute inset-0 bg-cover bg-center"
                   style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1516016343867-2f608c783263?q=80&w=1200&auto=format&fit=crop')",
+                    backgroundImage: "url('https://images-prod.dazeddigital.com/1800/azure/dazed-prod/1310/4/1314332.jpg')",
                     animation: "slowPulse 8s infinite alternate", // This creates a slow-mo effect
                   }}
                 ></div>
@@ -174,8 +163,8 @@ const Home = () => {
                     <h3 className="text-3xl font-bold uppercase mb-2 text-white gothic-text" style={{ animation: "subtleGlow 4s infinite" }}>
                       Limited Edition Collection
                     </h3>
-                    <p className="text-white mb-4 max-w-lg mx-auto">
-                      Crafted for the darkest clubs and the hardest beats. A balance of functionality and transgressive style.
+                    <p className="text-red mb-4 max-w-lg mx-auto">
+                    Discover our new collection of techno and rave wear designed for the ultimate night out.
                     </p>
                     <Button className="bg-[#990000] hover:bg-[#990000]/80 text-white border border-[#990000]/30">
                       <Link href="/shop">Shop Limited Edition</Link>
@@ -187,12 +176,6 @@ const Home = () => {
               {/* Horizontal Sliding Collection */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-5">
-                  <h3 className="text-xl font-bold text-white gothic-text">
-                    <span style={{ textShadow: '0 0 2px #990000' }}>Featured Collection</span>
-                  </h3>
-                  <Link href="/shop">
-                    <span className="text-[#990000] text-sm hover:underline transition-all">View All</span>
-                  </Link>
                 </div>
                 
                 <style dangerouslySetInnerHTML={{
@@ -263,27 +246,19 @@ const Home = () => {
                   </div>
                 </div>
                 
-                <div className="flex justify-center mt-2 gap-1">
-                  <div className="h-1 w-16 bg-[#990000]" style={{ boxShadow: '0 0 5px rgba(153,0,0,0.5)' }}></div>
-                  <div className="h-1 w-4 bg-[#990000]/30"></div>
-                  <div className="h-1 w-4 bg-[#990000]/30"></div>
-                </div>
+
               </div>
               
-              <div className="text-center mt-8">
-                <Link href="/shop">
-                  <Button variant="outline" className="border border-[#990000] text-[#990000] hover:bg-[#990000]/10">
-                    View All Products
-                  </Button>
-                </Link>
-              </div>
+
+
+
             </>
           )}
         </div>
       </section>
       
       {/* Our Journey & Fabrics Section */}
-      <section className="py-16 bg-[#0a0a0a]">
+      <section className="py-16 bg">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
@@ -299,7 +274,7 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
               <div>
                 <h3 className="text-xl font-bold text-white mb-4 gothic-text">From Underground to Wardrobe</h3>
-                <p className="text-gray-300 mb-4">Born from the dark rooms of Berlin's techno scene, our collection represents the intersection of avant-garde fashion and club functionality. Each piece tells a story of late nights, pulsing beats, and the raw energy that drives the underground.</p>
+                <p className="text-gray-300 mb-4">Born from the dark rooms of techno scene, our collection represents the intersection of avant-garde fashion and club functionality. Each piece tells a story of late nights, pulsing beats, and the raw energy that drives the underground.</p>
                 <p className="text-gray-300">We're committed to creating clothing that enhances your experience, whether you're dancing until dawn or expressing your connection to the culture. Thank you for being part of our community.</p>
               </div>
               

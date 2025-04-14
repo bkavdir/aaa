@@ -9,8 +9,7 @@ interface HeroProps {
   subtitle: string;
   primaryButtonText: string;
   primaryButtonLink: string;
-  secondaryButtonText?: string;
-  secondaryButtonLink?: string;
+
 }
 
 const Hero = ({
@@ -19,8 +18,7 @@ const Hero = ({
   subtitle,
   primaryButtonText,
   primaryButtonLink,
-  secondaryButtonText,
-  secondaryButtonLink
+
 }: HeroProps) => {
   return (
     <section className="relative h-[85vh] overflow-hidden">
@@ -78,7 +76,7 @@ const Hero = ({
           >
             <div className="flex items-center gap-2">
               <Headphones className="text-[#990000] h-4 w-4" />
-              <span className="text-white text-sm uppercase tracking-widest gothic-text">Hard Techno Gear</span>
+              <span className="text-white text-sm uppercase tracking-widest gothic-text">techno ist unsere welt</span>
             </div>
           </motion.div>
           
@@ -104,7 +102,7 @@ const Hero = ({
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {subtitle}
-            <span className="block mt-2 italic text-gray-400">Based in Dublin, Inspired by Berlin</span>
+            <span className="block mt-2 italic text-gray-400">Thank you for being with us on this journey.</span>
           </motion.p>
           
           <motion.div 
@@ -124,19 +122,6 @@ const Hero = ({
               </Link>
             </Button>
             
-            {secondaryButtonText && secondaryButtonLink && (
-              <Button 
-                asChild
-                variant="outline" 
-                size="lg"
-                className="border border-white/40 text-white hover:border-[#990000] hover:text-[#990000] gothic-text tracking-wider"
-              >
-                <Link href={secondaryButtonLink} className="flex items-center gap-2">
-                  <Music className="h-5 w-5" />
-                  {secondaryButtonText}
-                </Link>
-              </Button>
-            )}
           </motion.div>
         </div>
       </div>
