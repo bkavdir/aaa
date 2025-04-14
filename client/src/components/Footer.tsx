@@ -71,10 +71,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/category/sale" className="hover:text-[#e60000] transition-colors flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-[#e60000] rounded-full"></span>
-                  Afterparty Sale
-                </Link>
               </li>
               <li>
                 <Link href="/gift-cards" className="hover:text-[#e60000] transition-colors flex items-center gap-2">

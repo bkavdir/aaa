@@ -44,7 +44,7 @@ const ProductDetail = () => {
     if (!product || !selectedSize) {
       toast({
         title: "Please select options",
-        description: "You need to select color and size before adding to cart",
+        description: "You need to select size before adding to cart",
         variant: "destructive",
       });
       return;
@@ -272,7 +272,6 @@ const ProductDetail = () => {
                     <ul className="list-disc list-inside space-y-1">
                       <li>Material: High-quality technical fabrics</li>
                       <li>Care: Machine wash cold, hang to dry</li>
-                      <li>UV reactive: Colors pop under black light</li>
                       <li>Sustainably produced in limited quantities</li>
                     </ul>
                   </div>

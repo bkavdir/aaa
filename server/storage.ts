@@ -274,81 +274,148 @@ export class MemStorage implements IStorage {
     // Sample Products
     const products: InsertProduct[] = [
       {
-        name: "Mesh Reflective Top",
-        slug: "mesh-reflective-top",
-        description: "This mesh top catches the light for a stunning effect under club lighting. Made with breathable material for all-night comfort.",
-        price: 39.99,
-        salePrice: null,
+        name: "Tribal Zip-Up Hoodie",
+        slug: "tribal-zip-up-hoodie",
+        description: "Channel your inner urban warrior with this tribal hoodie. Battle not included.",
+        price: 54.99,
+        salePrice: 49.99,
         images: [
-          "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRllD6ssXJGFmcQlf-0_u_S5zWEmGXckUxsBGon29hrBjbQjiOEy1O1_8cSqKbhsrW6Nd6pL1Rg42f-gNYm8-wpdoqe65DCOvJyZebLVj9PxKzWNhao9u70WNaais5810VDvGLxQOLh&usqp=CAc"
+          "/zipper.jpeg"
         ],
         categoryId: 1, // Rave Tops
         isNewArrival: true,
         isFeatured: true
       },
       {
-        name: "Cyber Pants",
-        slug: "cyber-pants",
-        description: "Futuristic design with reflective details and comfortable stretch fabric. Perfect for techno nights.",
+        name: "Graphic Print Hoodie",
+        slug: "graphic-print-hoodie",
+        description: "Because nothing says ‘I’m mysterious’ like a hoodie with cryptic graphics.",
         price: 54.99,
-        salePrice: null,
+        salePrice: 49.99,
         images: [
-          "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+          "/jesus.jpeg"
         ],
-        categoryId: 2, // Bottoms
+        categoryId: 1, // Rave Tops
         isNewArrival: true,
-        isFeatured: false
+        isFeatured: true
       },
       {
-        name: "Holographic Bodysuit",
-        slug: "holographic-bodysuit",
-        description: "Turn heads with this holographic bodysuit that changes color as you move. Stretchy and comfortable for all-night dancing.",
-        price: 65.99,
-        salePrice: null,
+        name: "Eye Pattern Hoodie",
+        slug: "eye-pattern-hoodie",
+        description: "Keep all eyes on you, literally. Perfect for those who love a little paranoia with their style.",
+        price: 54.99,
+        salePrice: 49.99,
         images: [
-          "https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+          "/eyes.jpeg"
+        ],
+        categoryId: 1, // Rave Tops
+        isNewArrival: true,
+        isFeatured: true
+      },
+      {
+        name: "Denim Layered Jacket",
+        slug: "denim-layered-jacket",
+        description: "Perfect for when you want to look ruggedly cool, like you just walked out of a post-apocalyptic movie.",
+        price: 54.99,
+        salePrice: 49.99,
+        images: [
+          "/armour.jpeg"
+        ],
+        categoryId: 1, // Bottoms
+        isNewArrival: true,
+        isFeatured: true
+      },
+      {
+        name: "Sporty Puffer Jacket",
+        slug: "sporty-puffer-jacket",
+        description: "Stay warm while looking like you’re ready to join a secret rave in the Arctic.",
+        price: 74.99,
+        salePrice: 64.99,
+        images: [
+          "/adidog.jpeg"
+        ],
+        categoryId: 1, 
+        isNewArrival: true,
+        isFeatured: true
+      },
+      //////////////////////////////////////////////////////
+      {
+        name: "Chic Cutout Bodysuit",
+        slug: "chic-cutout-bodysuit",
+        description: "Elevate your style with this chic cutout bodysuit. A versatile piece that adds flair to any outfit.",
+        price: 24.99,
+        salePrice: 19.99,
+        images: [
+          "/bodysuit.jpeg"
         ],
         categoryId: 4, // Bodysuits
         isNewArrival: true,
         isFeatured: true
       },
       {
-        name: "LED Light Glasses",
-        slug: "led-light-glasses",
-        description: "Light up the night with these programmable LED glasses. Multiple patterns and colors controlled via smartphone app.",
+        name: "Edgy Cutout Dress",
+        slug: "edgy-cutout-dress",
+        description: "Turn heads at any event with this daring cutout dress. Perfect for making a bold statement on the dance floor.",
         price: 29.99,
-        salePrice: null,
+        salePrice: 24.99,
         images: [
-          "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+          "/wow.jpeg"
+        ],
+        categoryId: 4, // Bodysuits
+        isNewArrival: true,
+        isFeatured: true
+      }, 
+      ///////////////////////////////////////////////////
+      {
+        name: "Heart and Star Chain Necklace",
+        slug: "heart-and-star-chain-necklace",
+        description: "Express your bold style with this heart and star chain necklace. A striking accessory that complements your rave-ready look.",
+        price: 29.99,
+        salePrice: 19.99,
+        images: [
+          "/3.jpeg"
         ],
         categoryId: 3, // Accessories
         isNewArrival: true,
-        isFeatured: false
-      },
-      {
-        name: "Neon Crop Top",
-        slug: "neon-crop-top",
-        description: "Ultra-bright neon crop top that glows under UV light. Elastic material for a perfect fit.",
-        price: 34.99,
-        salePrice: 29.99,
-        images: [
-          "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
-        ],
-        categoryId: 1, // Rave Tops
-        isNewArrival: false,
         isFeatured: true
       },
       {
-        name: "Holographic Shorts",
-        slug: "holographic-shorts",
-        description: "High-waisted holographic shorts that shift colors as you move. Includes hidden pocket for essentials.",
-        price: 45.99,
-        salePrice: null,
+        name: "All-Seeing Eye Necklace",
+        slug: "all-seeing-eye-necklace",
+        description: "Stay stylishly protected with this all-seeing eye necklace. A unique piece that adds intrigue and charm to any rave ensemble.",
+        price: 29.99,
+        salePrice: 19.99,
         images: [
-          "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+          "/WhatsAp.jpeg"
         ],
-        categoryId: 2, // Bottoms
-        isNewArrival: false,
+        categoryId: 3, // Accessories
+        isNewArrival: true,
+        isFeatured: true
+      },
+      {
+        name: "Opalescent Chain Necklace",
+        slug: "opalescent-chain-necklace",
+        description: "Add a touch of ethereal glow to your rave outfit with this opalescent chain necklace. Perfect for making a statement on the dance floor.",
+        price: 29.99,
+        salePrice: 19.99,
+        images: [
+          "/2.jpeg"
+        ],
+        categoryId: 3, 
+        isNewArrival: true,
+        isFeatured: true
+      },
+      {
+        name: "Rave Essantial Bag",
+        slug: "rave-essantial-bag",
+        description: "Stay hands-free and stylish at any rave with this functional crossbody bag. Perfect for keeping your essentials secure while you dance the night away.",
+        price: 29.99,
+        salePrice: 24.99,
+        images: [
+          "/4.jpeg"
+        ],
+        categoryId: 3, 
+        isNewArrival: true,
         isFeatured: true
       }
     ];
@@ -371,16 +438,22 @@ export class MemStorage implements IStorage {
       { productId: 2, size: "L", stockQuantity: 12 },
       { productId: 2, size: "XL", stockQuantity: 6 },
       
+      // Heart and Star Chain Necklace Variants
+      { productId: 5, size: "One Size", stockQuantity: 15 },
+      
+      // Rave Essantial Bag Variants
+      { productId: 6, size: "One Size", stockQuantity: 12 },
+      
       // Holographic Bodysuit Variants
-      { productId: 3, size: "S", stockQuantity: 5 },
-      { productId: 3, size: "M", stockQuantity: 8 },
-      { productId: 3, size: "L", stockQuantity: 6 },
+      { productId: 7, size: "S", stockQuantity: 5 },
+      { productId: 7, size: "M", stockQuantity: 8 },
+      { productId: 8, size: "L", stockQuantity: 6 },
       
       // LED Light Glasses Variants
       { productId: 4, size: "One Size", stockQuantity: 20 },
       
       // Neon Crop Top Variants
-      { productId: 5, size: "S", stockQuantity: 7 },
+      { productId: 8, size: "S", stockQuantity: 7 },
       { productId: 5, size: "M", stockQuantity: 9 },
       { productId: 5, size: "L", stockQuantity: 6 },
       

@@ -221,7 +221,7 @@ const ProductListing = () => {
   ];
   
   // Available size options
-  const sizeOptions = ["XS", "S", "M", "L", "XL"];
+  const sizeOptions = ["S", "M", "L"];
   
   return (
     <>
@@ -377,28 +377,6 @@ const ProductListing = () => {
                     </AccordionContent>
                   </AccordionItem>
                   
-                  {/* Colors */}
-                  <AccordionItem value="colors">
-                    <AccordionTrigger>Colors</AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-3 gap-2">
-                        {colorOptions.map(color => (
-                          <div 
-                            key={color.value} 
-                            className={`flex flex-col items-center space-y-1 cursor-pointer`}
-                            onClick={() => handleColorFilterChange(color.value)}
-                          >
-                            <div 
-                              className={`w-8 h-8 rounded-full ${color.class} ${
-                                color.value === "White" ? "border border-gray-300" : ""
-                              } ${filters.colors.includes(color.value) ? "ring-2 ring-[hsl(184,100%,50%)] ring-offset-2 ring-offset-background" : ""}`}
-                            />
-                            <span className="text-xs">{color.label}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
                   
                   {/* Sizes */}
                   <AccordionItem value="sizes">
@@ -479,20 +457,6 @@ const ProductListing = () => {
                   handlePriceRangeChange(min, max);
                 }}
               />
-            </div>
-            
-            {/* Color filters */}
-            <div className="flex items-center space-x-1">
-              {colorOptions.slice(0, 6).map(color => (
-                <div 
-                  key={color.value}
-                  className={`w-6 h-6 rounded-full ${color.class} cursor-pointer ${
-                    color.value === "White" ? "border border-gray-300" : ""
-                  } ${filters.colors.includes(color.value) ? "ring-1 ring-[hsl(184,100%,50%)] ring-offset-1 ring-offset-background" : ""}`}
-                  title={color.label}
-                  onClick={() => handleColorFilterChange(color.value)}
-                />
-              ))}
             </div>
             
             {/* Size filters */}
